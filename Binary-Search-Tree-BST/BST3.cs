@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Binary_Search_Tree_BST
+namespace BST3
 {
-    internal class BST2<T> where T : IComparable
+
+    internal class BST3<T> where T : IComparable
     {
         public T data;
-        public BST<T> leftNode;
-        public BST<T> rightNode;
-        public BST2(T data)
+        public BST3<T> leftNode;
+        public BST3<T> rightNode;
+        public BST3(T data)
         {
             this.data = data;
         }
-        int Leftcount = 0, Rightcount = 0;
+        // int Leftcount=0, Rightcount=0;
+        bool result = false;
         public void add(T element)
         {
             T a = this.data;
@@ -23,7 +25,7 @@ namespace Binary_Search_Tree_BST
             {
                 if (leftNode == null)
                 {
-                    leftNode = new BST<T>(element);
+                    leftNode = new BST3<T>(element);
                 }
                 else
                 {
@@ -34,7 +36,7 @@ namespace Binary_Search_Tree_BST
             {
                 if (rightNode == null)
                 {
-                    rightNode = new BST<T>(element);
+                    rightNode = new BST3<T>(element);
                 }
                 else
                 {
@@ -54,5 +56,29 @@ namespace Binary_Search_Tree_BST
                 rightNode.show();
             }
         }
+        public bool ifexists(T element, BST3<T> node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+            if (node.data.Equals(element))
+            {
+                Console.WriteLine("we found the element :" + node.data);
+                result = true;
+            }
+
+            if (element.CompareTo(node.data) < 0)
+            {
+                ifexists(element, node.leftNode);
+            }
+            else
+
+            {
+                ifexists(element, node.rightNode);
+            }
+            return result;
+        }
+
     }
 }
